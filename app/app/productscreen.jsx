@@ -9,6 +9,8 @@ const[movies, setMovies]=useState([]);
 
 const [isLoading, setIsLoading]=useState(true);
 
+const [error, setError]=useState(null); 
+
 useEffect(()=>{
     getMovies();
 }, []); 
@@ -32,10 +34,12 @@ const getMovies=()=>{
         return res.json()
 }).then(data=>{
     setMovies(data);
+    setIsLoading(false);
     console.log(data[0]);
     console.log(data.length);
     setIsLoading(false);
 }).catch ((error)=>{
+    setError(error.message);
     console.log(error.message);
 });
 
@@ -45,8 +49,9 @@ const getMovies=()=>{
         
        <SafeAreaView style={styles.body} >
        {
-        isLoading ? (<ActivityIndicator size="large" color="red" style={{alignItems:'center', justifyContent:'center'}} />) :
-        (<FlatList
+        isLoading ? (<ActivityIndicator size="large" color="red" style={{alignItems:'center', justifyContent:'center'}} />)
+        : error ? (<Text style={{color:'red', textAlign:'center', marginTop:20, fontSize:22}}>{error}</Text>):
+        (<FlatList showsHorizontalScrollIndicator={false}
             data={movies}
             renderItem={({item})=>{
                 
