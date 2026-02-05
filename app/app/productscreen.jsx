@@ -1,29 +1,80 @@
 
-import { useEffect } from "react";
-import { Text, StyleSheet } from "react-native";
+import { useEffect, useState } from "react";
+import { Text, StyleSheet, FlatList, View, Image, ActivityIndicator } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-const ProductScreen=()=>{
+
+const MovieScreen=()=>{
+
+const[movies, setMovies]=useState([]);
+
+const [isLoading, setIsLoading]=useState(true);
 
 useEffect(()=>{
-    getProducts();
+    getMovies();
 }, []); 
 
-const getProducts=()=>{
+const getMovies=()=>{
 
-    const URL="https://imdb236.p.rapidapi.com/api/imdb/top250-movies/";
+    const URL="https://imdb236.p.rapidapi.com/api/imdb/top250-movies";
 
-    fetch(URL).then(res=>{
+    fetch(URL, {headers:
+        {
+            'x-rapidapi-key': '7817c7bbf9mshdc5fe79b9867212p131396jsnaeafd38cb778',
+            'x-rapidapi-host': 'imdb236.p.rapidapi.com',
+        }
+
+    }).then(res=>{
+
+        if(!res.ok){
+            throw Error("Error fetching movies");
+        }
+
         return res.json()
 }).then(data=>{
-    console.log(data);
-})
+    setMovies(data);
+    console.log(data[0]);
+    console.log(data.length);
+    setIsLoading(false);
+}).catch ((error)=>{
+    console.log(error.message);
+});
 
 }
 
     return(
         
-       <SafeAreaView style={styles.body}>
-         <Text>Product Screen</Text>
+       <SafeAreaView style={styles.body} >
+       {
+        isLoading ? (<ActivityIndicator size="large" color="red" style={{alignItems:'center', justifyContent:'center'}} />) :
+        (<FlatList
+            data={movies}
+            renderItem={({item})=>{
+                
+                    return(
+                        <View style={styles.cardContainer}>
+                            <Text style={styles.text}>{item.originalTitle}</Text>
+                            <Image source={{uri:item.primaryImage}} style={{width:'90%', height:300}} />
+                            <Text style={styles.releaseDate}>{item.releaseDate}</Text>
+                            
+                            <Text style={styles.description}>{item.description}</Text>
+                        </View>
+
+
+                    )
+                
+                    
+                
+            }}
+         />) 
+    
+
+
+
+       }
+       
+       
+    
+         
        </SafeAreaView>
         
     )
@@ -31,14 +82,50 @@ const getProducts=()=>{
 
 
 
-export default ProductScreen;
+export default MovieScreen;
 
 const styles= StyleSheet.create({
 
     body:{
         flex:1,
-        justifyContent:"center",
-        alignItems:"center"
+        backgroundColor:'white',
+        paddingHorizontal:10,
+        alignContent:'center',
+        justifyContent:'center',
+
     },
+
+    text:{
+        fontSize:24,
+        color:'black',
+        fontWeight:'bold',
+        margin:2,
+        textAlign:'center',
+    },
+    description:{
+        fontSize:16,
+        color:'black',
+        margin:2,
+        textAlign:'justify',
+    },
+    releaseDate:{
+        fontSize:16,
+        color:'blue',
+        margin:2,
+        textAlign:'center',
+    },
+    cardContainer:{
+        backgroundColor:'pink',
+        borderRadius:10,
+        padding:10,
+        marginVertical:10,
+        shadowColor:'black',
+        alignItems:'center',
+        justifyContent:'center',
+        shadowOffset:{width:0, height:2},
+        shadowOpacity:0.25,
+        shadowRadius:3.84,
+        elevation:5,
+    }
 
 })
