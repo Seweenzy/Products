@@ -1,6 +1,7 @@
-import{Text, View} from "react-native";
-import{SafeAreaView} from "react-native-safe-area-context";
-import ProductScreen from "./productscreen";
+import{ View} from "react-native";
+
+import MovieScreen from "./moviescreen";
+
 
 
 
@@ -11,7 +12,7 @@ export default function Index(){
 
     return(
 
-        <SafeAreaView
+        <View
         style={{backgroundColor:'red', 
             flex:1,
             paddingHorizontal:10,
@@ -20,10 +21,10 @@ export default function Index(){
         >
 
 
-        
-        <ProductScreen/>
+        <MovieScreen/>
+       
 
-        </SafeAreaView>
+        </View>
 
     )
 }
