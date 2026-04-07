@@ -4,9 +4,6 @@ import MovieScreen from "./moviescreen";
 
 
 
-
- 
-
 export default function Index(){
 
 

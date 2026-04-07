@@ -1,10 +1,19 @@
 import { useEffect, useState } from "react";
-import { Text, StyleSheet, FlatList, View, Image, ActivityIndicator } from "react-native";
+import {
+  Text,
+  StyleSheet,
+  FlatList,
+  View,
+  Image,
+  ActivityIndicator,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const MovieScreen = () => {
   const [movies, setMovies] = useState([]);
+
   const [isLoading, setIsLoading] = useState(true);
+
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -30,29 +39,50 @@ const MovieScreen = () => {
       .then((data) => {
         setMovies(data);
         setIsLoading(false);
+        console.log(data);
+        console.log("Full API response:", data);
+
+        setIsLoading(false);
       })
       .catch((error) => {
         setError(error.message);
-        setIsLoading(false);
+        console.log(error.message);
       });
   };
 
   return (
     <SafeAreaView style={styles.body}>
       {isLoading ? (
-        <ActivityIndicator size="large" color="red" style={{ alignItems: "center", justifyContent: "center" }} />
+        <ActivityIndicator
+          size="large"
+          color="red"
+          style={{ alignItems: "center", justifyContent: "center" }}
+        />
       ) : error ? (
-        <Text style={{ color: "red", textAlign: "center", marginTop: 20, fontSize: 22 }}>{error}</Text>
+        <Text
+          style={{
+            color: "red",
+            textAlign: "center",
+            marginTop: 20,
+            fontSize: 22,
+          }}
+        >
+          {error}
+        </Text>
       ) : (
         <FlatList
-          showVerticalScrollIndicator={false}
+          showsHorizontalScrollIndicator={false}
           data={movies}
           renderItem={({ item }) => {
             return (
               <View style={styles.cardContainer}>
                 <Text style={styles.text}>{item.originalTitle}</Text>
-                <Image source={{ uri: item.primaryImage }} style={{ width: "90%", height: 300 }} />
+                <Image
+                  source={{ uri: item.primaryImage }}
+                  style={{ width: "90%", height: 300 }}
+                />
                 <Text style={styles.releaseDate}>{item.releaseDate}</Text>
+
                 <Text style={styles.description}>{item.description}</Text>
               </View>
             );
