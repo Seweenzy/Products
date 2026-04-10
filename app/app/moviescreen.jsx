@@ -40,7 +40,6 @@ const MovieScreen = () => {
         setMovies(data);
         setIsLoading(false);
         console.log(data);
-        console.log("Full API response:", data);
 
         setIsLoading(false);
       })
