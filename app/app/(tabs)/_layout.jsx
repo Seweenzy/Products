@@ -6,11 +6,20 @@ const TabsLayout = () => {
     <Tabs
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: "#004ea3",
-        tabBarInActiveTintColor: "#49454f",
+        tabBarInactiveColor: "#49454f",
+        tabBarActiveColor: "#004ea3",
         tabBarStyle: {
-          height: 70,
-          backgroundColor: "white",
+          marginHorizontal: 20,
+          borderRadius: 30,
+          marginBottom: 25,
+          position: "absolute",
+          elevation: 6,
+        },
+        tabBarIconStyle: {
+          marginTop: 10,
+        },
+        tabBarLabelStyle: {
+          fontSize: 12,
         },
       }}
     >
@@ -18,7 +27,7 @@ const TabsLayout = () => {
         name="home"
         options={{
           title: "Homepage",
-          tabBarIcon: ({ color, size, focused }) => (
+          tabBarIcon: ({ focused, color, size }) => (
             <Ionicons
               name={focused ? "home" : "home-outline"}
               color={color}
@@ -31,11 +40,24 @@ const TabsLayout = () => {
         name="settings"
         options={{
           title: "Settings",
-          tabBarIcon: ({ color, size, focused }) => (
+          tabBarIcon: ({ focused, color, size }) => (
             <Ionicons
               name={focused ? "settings" : "settings-outline"}
               color={color}
-              size={focused ? size + 4 : size}
+              size={focused ? size + 8 : size}
+            />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="search"
+        options={{
+          title: "Search",
+          tabBarIcon: ({ focused, color, size }) => (
+            <Ionicons
+              name={focused ? "search" : "search-outline"}
+              color={color}
+              size={focused ? size + 8 : size}
             />
           ),
         }}
@@ -44,11 +66,11 @@ const TabsLayout = () => {
         name="profile"
         options={{
           title: "Profile",
-          tabBarIcon: ({ color, size, focused }) => (
+          tabBarIcon: ({ focused, color, size }) => (
             <Ionicons
               name={focused ? "person" : "person-outline"}
               color={color}
-              size={focused ? size + 4 : size}
+              size={focused ? size + 8 : size}
             />
           ),
         }}
@@ -57,11 +79,11 @@ const TabsLayout = () => {
         name="recruits"
         options={{
           title: "Recruits",
-          tabBarIcon: ({ color, size, focused }) => (
+          tabBarIcon: ({ focused, color, size }) => (
             <Ionicons
               name={focused ? "people" : "people-outline"}
               color={color}
-              size={size}
+              size={focused ? size + 10 : size}
             />
           ),
         }}
