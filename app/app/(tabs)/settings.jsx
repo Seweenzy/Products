@@ -5,6 +5,7 @@ import { Ionicons } from "@expo/vector-icons";
 
 const Settings = () => {
   const [selectedIndex, setSelectedIndex] = useState(null);
+  const [hasOneSpecial, setHasOneSpecial] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
   const [password, setPassword] = useState("");
 
@@ -113,7 +114,7 @@ const Settings = () => {
         <View style={{ flexDirection: "row", marginTop: 20, padding: 10 }}>
           <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
             <Pressable
-              onPress={() => setSelectedIndex(0)}
+              onPress={() => setHasOneSpecial(0)}
               style={{
                 width: 60,
                 marginRight: 20,
@@ -123,26 +124,81 @@ const Settings = () => {
                 style={{
                   fontSize: 16,
                   fontWeight: "bold",
-                  color: selectedIndex === 0 ? "red" : "black",
+                  color: hasOneSpecial === 0 ? "red" : "black",
                 }}
               >
                 Home
               </Text>
             </Pressable>
-            <Pressable style={{ width: 80, marginRight: 20 }}>
-              <Text style={{ fontSize: 16, fontWeight: "bold" }}>About Us</Text>
+            <Pressable
+              onPress={() => setHasOneSpecial(1)}
+              style={{ width: 80, marginRight: 20 }}
+            >
+              <Text
+                style={{
+                  fontSize: 16,
+                  fontWeight: "bold",
+                  color: hasOneSpecial === 1 ? "red" : "black",
+                }}
+              >
+                About Us
+              </Text>
             </Pressable>
-            <Pressable style={{ width: 60, marginRight: 20 }}>
-              <Text style={{ fontSize: 16, fontWeight: "bold" }}>Settings</Text>
+            <Pressable
+              onPress={() => setHasOneSpecial(2)}
+              style={{ width: 60, marginRight: 20 }}
+            >
+              <Text
+                style={{
+                  fontSize: 16,
+                  fontWeight: "bold",
+                  color: hasOneSpecial === 2 ? "red" : "black",
+                }}
+              >
+                Settings
+              </Text>
             </Pressable>
-            <Pressable style={{ width: 60, marginRight: 20 }}>
-              <Text style={{ fontSize: 16, fontWeight: "bold" }}>Search</Text>
+            <Pressable
+              onPress={() => setHasOneSpecial(3)}
+              style={{ width: 60, marginRight: 20 }}
+            >
+              <Text
+                style={{
+                  fontSize: 16,
+                  fontWeight: "bold",
+                  color: hasOneSpecial === 3 ? "red" : "black",
+                }}
+              >
+                Search
+              </Text>
             </Pressable>
-            <Pressable style={{ width: 60, marginRight: 20 }}>
-              <Text style={{ fontSize: 16, fontWeight: "bold" }}>Profile</Text>
+            <Pressable
+              onPress={() => setHasOneSpecial(4)}
+              style={{ width: 60, marginRight: 20 }}
+            >
+              <Text
+                style={{
+                  fontSize: 16,
+                  fontWeight: "bold",
+                  color: hasOneSpecial === 4 ? "red" : "black",
+                }}
+              >
+                Profile
+              </Text>
             </Pressable>
-            <Pressable style={{ width: 60, marginRight: 20 }}>
-              <Text style={{ fontSize: 16, fontWeight: "bold" }}>Recruits</Text>
+            <Pressable
+              onPress={() => setHasOneSpecial(5)}
+              style={{ width: 60, marginRight: 20 }}
+            >
+              <Text
+                style={{
+                  fontSize: 16,
+                  fontWeight: "bold",
+                  color: hasOneSpecial === 5 ? "red" : "black",
+                }}
+              >
+                Recruits
+              </Text>
             </Pressable>
           </ScrollView>
         </View>
