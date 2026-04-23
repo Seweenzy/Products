@@ -9,11 +9,10 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   Alert,
-  Button,
   TouchableOpacity,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 const Profile = () => {
@@ -61,6 +60,7 @@ const Profile = () => {
         }}
       >
         <Text>This is Profile screen</Text>
+
         <View>
           <ScrollView
             horizontal={true}
@@ -241,7 +241,7 @@ const Profile = () => {
             <Text>
               You can also customize the icons by changing their color, size,
               and other properties to fit your design needs.
-              {showText ? "Read Less" : "Read More"}
+              {!showText ? "Read More" : "Read Less"}
             </Text>
           </Pressable>
           {showText && (
