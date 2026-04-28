@@ -2,6 +2,7 @@ import { View, Text, ScrollView, Pressable, TextInput } from "react-native";
 import Qsafeview from "../components/Qsafeview";
 import { useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
+import Tests from "../components/tests";
 
 const Settings = () => {
   const [selectedIndex, setSelectedIndex] = useState(null);
@@ -273,6 +274,18 @@ const Settings = () => {
             />
           </Pressable>
         </View>
+
+        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+          <Tests texts={["Home"]} index={0} />
+          <Tests texts={["About Us"]} index={1} />
+          <Tests texts={["Contact Us"]} index={2} />
+          <Tests texts={["Profile"]} index={3} />
+          <Tests texts={["Account"]} index={4} />
+          <Tests texts={["Account"]} index={5} />
+          <Tests texts={["Account"]} index={6} />
+          <Tests texts={["Account"]} index={7} />
+          <Tests texts={["Account"]} index={8} />
+        </ScrollView>
       </View>
     </Qsafeview>
   );

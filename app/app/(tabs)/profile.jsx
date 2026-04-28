@@ -12,7 +12,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 const Profile = () => {
@@ -54,7 +54,6 @@ const Profile = () => {
       <SafeAreaView
         style={{
           flex: 1,
-
           paddingHorizontal: 10,
           backgroundColor: isSwitchOn ? "lightgrey" : "white",
         }}
